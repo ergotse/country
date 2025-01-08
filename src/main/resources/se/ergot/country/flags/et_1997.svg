@@ -1,0 +1,65 @@
+<svg
+  width="1200"
+  height="600"
+  version="1.1"
+  id="svg898"
+  sodipodi:docname="Flag_of_Ethiopia_(1996–2009).svg"
+  inkscape:version="1.1 (c68e22c387, 2021-05-23)"
+  xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+  xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+  xmlns="http://www.w3.org/2000/svg"
+  xmlns:svg="http://www.w3.org/2000/svg">
+  <defs
+    id="defs902" />
+  <sodipodi:namedview
+    id="namedview900"
+    pagecolor="#ffffff"
+    bordercolor="#999999"
+    borderopacity="1"
+    inkscape:pageshadow="0"
+    inkscape:pageopacity="0"
+    inkscape:pagecheckerboard="0"
+    showgrid="false"
+    inkscape:zoom="0.48"
+    inkscape:cx="600"
+    inkscape:cy="298.95833"
+    inkscape:window-width="1366"
+    inkscape:window-height="705"
+    inkscape:window-x="-8"
+    inkscape:window-y="-8"
+    inkscape:window-maximized="1"
+    inkscape:current-layer="svg898" />
+  <path
+    d="M 0,0 H 1200 V 600 H 0 Z"
+    fill="#078930"
+    id="path886" />
+  <path
+    d="M 0,200 H 1200 V 600 H 0 Z"
+    fill="#fcdd09"
+    id="path888" />
+  <path
+    d="M 0,400 H 1200 V 600 H 0 Z"
+    fill="#da121a"
+    id="path890" />
+  <g
+    id="g968"
+    transform="matrix(1.3333333,0,0,1.3333333,-199.99998,-99.99999)">
+    <circle
+      cx="600"
+      cy="300"
+      r="150"
+      fill="#00a5db"
+      id="circle892" />
+    <path
+      d="m 485,264.033 h 87.852 l 19.864,-61.486 5.297,16.398 -28.866,89.351 -8.571,-6.263 9.002,-27.866 H 498.87 L 485,264.033 M 528.926,400 l 27.148,-84.033 -52.004,-38 h 17.143 l 75.573,55.222 -8.572,6.264 -23.568,-17.222 -21.85,67.635 L 528.925,400 m 142.148,0 -71.073,-51.935 -52.004,38 5.298,-16.398 75.572,-55.222 3.274,10.135 -23.568,17.222 57.204,41.8 5.298,16.398 M 715,264.033 l -71.074,51.934 19.864,61.486 -13.87,-10.134 -28.865,-89.352 h 10.595 l 9.002,27.866 57.205,-41.8 H 715 M 600,180 l 27.148,84.033 h 64.28 l -13.869,10.134 h -93.413 l 3.274,-10.134 h 29.133 l -21.85,-67.635 z"
+      fill="#fcdd09"
+      id="path894"
+      transform="translate(0,-1.25)" />
+    <path
+      d="M 600,358.123 V 422.5 M 548.437,320.484 487.5,340.377 M 568.133,259.582 530.47,207.5 M 631.866,259.582 669.53,207.5 m -17.967,112.984 60.938,19.893 z"
+      stroke="#fcdd09"
+      stroke-width="5"
+      id="path896"
+      transform="translate(0,-1.25)" />
+  </g>
+</svg>
