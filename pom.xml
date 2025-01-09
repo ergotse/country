@@ -6,7 +6,7 @@
 
     <groupId>se.ergot</groupId>
     <artifactId>country</artifactId>
-    <version>1.0.3</version>
+    <version>1.0.4-SNAPSHOT</version>
 
     <properties>
         <maven.compiler.source>18</maven.compiler.source>
