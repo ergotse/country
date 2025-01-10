@@ -1,3 +1,5 @@
+[<img src="https://jitpack.io/v/ergotse/country.svg">](https://jitpack.io/#ergotse/country)
+
 # Country
 
 This project includes all countries according to ISO 3166-1 plus UK-countries (ISO 3166-2:GB).  
