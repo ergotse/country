@@ -12,13 +12,13 @@ import java.util.stream.Collectors;
 
 @SuppressWarnings("java:S1192")
 public enum Country {
-    // Länder som inte längre finns
+    // Countries that no longer exist
     CS(builder().endYear(Year.of(1993))),
     DD(builder().endYear(Year.of(1990))),
     SU(builder().endYear(Year.of(1991))),
     YU(builder().flag(Year.of(1993)).endYear(Year.of(2006))),
 
-    // Alla länder
+    // All countries
     AD,
     AE,
     AF,
