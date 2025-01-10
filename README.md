@@ -15,4 +15,30 @@ Settings can be changed or replaced by adding property-files to your project:
 * Translations of country names is located in CountryNames_<language-code>.properties. 
 To add translations of country names in for example french, add CountryNames_fr.properties with 
 all the translations. See CountryNames_en.properties for examples.
+* To add custom properties to countries, make changes i Country.properties. FIFA-codes for countries is added
 * To change native country. Add country.native to Country.properties with iso code of desired country (e.g. country.native=SE) 
+
+## Requirements
+* JDK 18
+
+## Installation
+### With Maven
+Add the following parts to your pom.xml:
+```
+    <repositories>
+        <repository>
+            <id>jitpack.io</id>
+            <url>https://jitpack.io</url>
+        </repository>
+    </repositories>
+```
+```
+    <dependencies>
+        <dependency>
+            <groupId>se.ergot</groupId>
+            <artifactId>country</artifactId>
+            <version>$VERSION</version>
+        </dependency>
+    </dependencies>
+```
+Replace $VERSION with your version of choice (e.g. 1.0.4). 
