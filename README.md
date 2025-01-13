@@ -39,8 +39,7 @@ Add the following parts to your pom.xml:
         <dependency>
             <groupId>se.ergot</groupId>
             <artifactId>country</artifactId>
-            <version>$VERSION</version>
+            <version>1.0.5</version>
         </dependency>
     </dependencies>
 ```
-Replace $VERSION with your version of choice (e.g. 1.0.4). 
