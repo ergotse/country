@@ -6,7 +6,35 @@
 
     <groupId>se.ergot</groupId>
     <artifactId>country</artifactId>
-    <version>1.0.4</version>
+    <version>1.0.2</version>
+    <packaging>jar</packaging>
+
+    <name>se.ergot.country</name>
+    <description>
+        A package to maintain configurable country data available in code
+    </description>
+    <url>https://github.com/ergotse/country</url>
+
+    <licenses>
+        <license>
+            <name>GNU General Public License, Version 3.0</name>
+            <url>https://www.gnu.org/licenses/gpl-3.0.html</url>
+            <distribution>repo</distribution>
+        </license>
+    </licenses>
+
+    <developers>
+        <developer>
+            <name>Erik Göthe</name>
+            <organizationUrl>https://www.ergot.se</organizationUrl>
+        </developer>
+    </developers>
+
+    <scm>
+        <connection>scm:git:git://github.com/ergotse/country.git</connection>
+        <developerConnection>scm:git:git@github.com:ergotse/country.git</developerConnection>
+        <url>https://github.com/ergotse/country</url>
+    </scm>
 
     <properties>
         <maven.compiler.source>18</maven.compiler.source>
@@ -27,5 +55,36 @@
             <version>1.18.30</version>
         </dependency>
     </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-javadoc-plugin</artifactId>
+                <version>3.11.2</version>
+                <executions>
+                    <execution>
+                        <id>attach-javadocs</id>
+                        <goals>
+                            <goal>jar</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-source-plugin</artifactId>
+                <version>3.3.1</version>
+                <executions>
+                    <execution>
+                        <id>attach-sources</id>
+                        <goals>
+                            <goal>jar-no-fork</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
 
 </project>

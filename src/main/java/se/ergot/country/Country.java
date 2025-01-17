@@ -320,10 +320,25 @@ public enum Country {
                 .toArray(Country[]::new);
     }
 
+    /**
+     * Finds a country based on its ISO code.
+     *
+     * <p>This method attempts to find a country from the ISO code provided. If the
+     * input is null or the ISO code does not match any country, it returns {@code null}.</p>
+     *
+     * @param iso the ISO code of the country
+     * @return the {@link Country} object corresponding to the ISO code, or {@code null} if not found
+     */
     public static Country find(String iso) {
         return iso != null ? Country.valueOf(iso) : null;
     }
 
+    /**
+     * Retrieves the Country that is configured as native in Country.properties (country.native=XX where XX is country's iso code).
+     * If property not found, this method returns the country of the default locale for this instance of the Java Virtual Machine.
+     *
+     * @return the {@link Country} that is configured as native, or default Locale's country
+     */
     public static Country getNative() {
         try {
             return Country.valueOf(properties.getProperty("country.native", Locale.getDefault().getCountry()));
@@ -367,19 +382,63 @@ public enum Country {
         });
     }
 
+    /**
+     * Retrieves the name of the country in the default locale's language.
+     *
+     * <p>This method uses the system's default {@link java.util.Locale} to fetch the name
+     * of the country. If you need the name in a specific locale, use {@link #getName(Locale)}.</p>
+     *
+     * @return the localized name of the country
+     */
     public String getName() {
         return getName(Locale.getDefault());
     }
 
+    /**
+     * Retrieves the name of the country in the specified locale's language.
+     *
+     * <p>This method fetches the localized name of the country based on the given
+     * {@link java.util.Locale}. The name is retrieved from a resource bundle associated with the locale.</p>
+     *
+     * @param locale the locale for which the country's name should be localized
+     * @return the localized name of the country
+     * @throws MissingResourceException if the name for the given locale is not found
+     */
     public String getName(Locale locale) {
         final var resourceBundle = getResourceBundle(locale);
         return resourceBundle.getString(name() + ".name");
     }
 
+    /**
+     * Retrieves the name of the country as it was in a specific year.
+     *
+     * <p>This method fetches the localized name of the country for the default locale
+     * as it existed in the given {@link java.time.Year}. If the country has a
+     * parent origin and was not independent during the specified year, the name
+     * of the parent country is returned.</p>
+     *
+     * @param atYear the year for which the country's name is requested
+     * @return the name of the country in the default locale, or the name of its parent country
+     *         if it was not independent at the specified year
+     */
     public String getName(Year atYear) {
         return getName(Locale.getDefault(), atYear);
     }
 
+    /**
+     * Retrieves the localized name of the country as it was in a specific year.
+     *
+     * <p>This method returns the localized name of the country for the given
+     * {@link java.util.Locale} and {@link java.time.Year}. If the country has a
+     * parent origin and was not independent during the specified year, the name
+     * of the parent country is returned. If no localized name is available for
+     * the specified year, {@code null} is returned.</p>
+     *
+     * @param locale the locale in which the country's name should be localized
+     * @param atYear the year for which the country's name is requested
+     * @return the localized name of the country, or the name of its parent country
+     *         if it was not independent at the specified year; {@code null} if no name is found
+     */
     public String getName(Locale locale, Year atYear) {
         if (countryOrigin != null && !countryOrigin.getEndYear().isBefore(atYear)) {
             return countryOrigin.getFrom().getName(locale, atYear);
@@ -413,10 +472,27 @@ public enum Country {
                 }, resourceBundle::getString));
     }
 
+    /**
+     * Retrieves the SVG content for the country's current flag.
+     *
+     * <p>This method fetches the default flag of the country in SVG format from the resources.
+     * If the flag file is not found, a placeholder SVG is returned.</p>
+     *
+     * @return the SVG content of the country's flag
+     */
     public String getFlagSvg() {
         return getFlagSvgContent(getFlagFileName());
     }
 
+    /**
+     * Retrieves the SVG content for the country's flag at a specific year.
+     *
+     * <p>If the country has changed its flag over time, this method returns the flag
+     * used in the specified {@link java.time.Year}.</p>
+     *
+     * @param atYear the year for which the flag is requested
+     * @return the SVG content of the country's flag at the specified year
+     */
     public String getFlagSvg(Year atYear) {
         return getFlagSvgContent(getFlagFileName(atYear));
     }
@@ -450,6 +526,16 @@ public enum Country {
         }
     }
 
+    /**
+     * Determines if the country existed in a given year.
+     *
+     * <p>This method checks whether the country was established and not dissolved
+     * in the specified {@link java.time.Year}. If the country has a parent country
+     * of origin, it checks that as well.</p>
+     *
+     * @param atYear the year to check
+     * @return {@code true} if the country existed in the given year, otherwise {@code false}
+     */
     public boolean existsAtYear(Year atYear) {
         final var isStarted = countryOrigin == null || countryOrigin.getEndYear().isBefore(atYear);
         final var isNotEnded = endYear == null || !endYear.isBefore(atYear);
@@ -457,6 +543,14 @@ public enum Country {
         return isStarted && isNotEnded;
     }
 
+    /**
+     * Retrieves a property value associated with the country.
+     *
+     * <p>This method looks up a property in the `Country.properties` file.</p>
+     *
+     * @param name the property name to look up (e.g., "population", "capital")
+     * @return the property value as a string, or {@code null} if the property does not exist
+     */
     public String getValue(String name) {
         final String key = name() + "." + name;
         return properties.getProperty(key);

@@ -5,7 +5,7 @@ Sources:
 https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2  
 https://en.wikipedia.org/wiki/ISO_3166-2:GB
 
-Country flag files is from wikipedia.
+Country flag files is from Wikipedia (public domain).
 
 If a translation of a country name can't be found for selected Locale, the english name is used.
 One country is marked as native. Default is the country of your default Locale. This may be changed in property file.  
@@ -23,22 +23,23 @@ all the translations. See CountryNames_en.properties for examples.
 
 ## Installation
 ### With Maven
-Add the following parts to your pom.xml:
-```
-    <repositories>
-        <repository>
-            <id>jitpack.io</id>
-            <url>https://jitpack.io</url>
-        </repository>
-    </repositories>
-```
-```
+Add the following parts to your pom.xml (with version number you installed):
+```xml
     <dependencies>
         <dependency>
             <groupId>se.ergot</groupId>
             <artifactId>country</artifactId>
-            <version>$VERSION</version>
+            <version>1.0.0</version>
         </dependency>
     </dependencies>
 ```
-Replace $VERSION with your version of choice (e.g. 1.0.4). 
+## Usage
+All countries are accessed from Country via its iso code.
+
+e.g.:
+```java
+final Country sweden = Country.SE;
+final String name = sweden.getName();  // Name of sweden in default Locale
+final String nameEN = sweden.getName(Locale.ENGLISH);  // Name of sweden in other Locale
+final String flag = sweden.getFlagSvg();  // Svg content of current flag
+```
