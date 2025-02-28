@@ -129,4 +129,13 @@ class CountryTest {
         assertTrue(Country.CS.existsAtYear(Year.of(1993)));
         assertFalse(Country.CS.existsAtYear(Year.of(1994)));
     }
+
+    @Test
+    void testFind() {
+        assertEquals(Country.SE, Country.find("SE"));
+        assertEquals(Country.SE, Country.find("se"));
+        assertNull(Country.find("QQ"));
+        assertNull(Country.find(""));
+        assertNull(Country.find(null));
+    }
 }

@@ -23,13 +23,13 @@ all the translations. See CountryNames_en.properties for examples.
 
 ## Installation
 ### With Maven
-Add the following parts to your pom.xml (with version number you installed):
+Add the following parts to your pom.xml:
 ```xml
     <dependencies>
         <dependency>
             <groupId>se.ergot</groupId>
             <artifactId>country</artifactId>
-            <version>1.0.0</version>
+            <version>1.0.3</version>
         </dependency>
     </dependencies>
 ```

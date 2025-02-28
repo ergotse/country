@@ -330,7 +330,11 @@ public enum Country {
      * @return the {@link Country} object corresponding to the ISO code, or {@code null} if not found
      */
     public static Country find(String iso) {
-        return iso != null ? Country.valueOf(iso) : null;
+        try {
+            return Country.valueOf(iso.toUpperCase());
+        } catch (Exception e) {
+            return null;
+        }
     }
 
     /**
