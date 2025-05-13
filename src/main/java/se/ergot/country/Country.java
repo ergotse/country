@@ -230,7 +230,7 @@ public enum Country {
     ST,
     SV,
     SX,
-    SY,
+    SY(builder().flag(Year.of(2025))),
     SZ,
     TC,
     TD,
@@ -330,11 +330,7 @@ public enum Country {
      * @return the {@link Country} object corresponding to the ISO code, or {@code null} if not found
      */
     public static Country find(String iso) {
-        try {
-            return Country.valueOf(iso.toUpperCase());
-        } catch (Exception e) {
-            return null;
-        }
+        return iso != null ? Country.valueOf(iso) : null;
     }
 
     /**
