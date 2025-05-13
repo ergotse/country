@@ -29,7 +29,7 @@ Add the following parts to your pom.xml:
         <dependency>
             <groupId>se.ergot</groupId>
             <artifactId>country</artifactId>
-            <version>1.0.3</version>
+            <version>1.0.4</version>
         </dependency>
     </dependencies>
 ```

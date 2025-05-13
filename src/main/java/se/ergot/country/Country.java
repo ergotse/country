@@ -230,7 +230,7 @@ public enum Country {
     ST,
     SV,
     SX,
-    SY,
+    SY(builder().flag(Year.of(2025))),
     SZ,
     TC,
     TD,
