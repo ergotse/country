@@ -1,0 +1,14 @@
+{
+  "intervals": [
+    {
+      "end": 1968,
+      "belongsTo": "ES"
+    },
+    {}
+  ],
+  "flagChange": [
+    1969,
+    1973,
+    1979
+  ]
+}

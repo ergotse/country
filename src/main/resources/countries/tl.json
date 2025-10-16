@@ -1,0 +1,12 @@
+{
+  "intervals": [
+    {
+      "end": 1975,
+      "belongsTo": "PT"
+    },
+    {
+      "end": 2002,
+      "belongsTo": "ID"
+    }
+  ]
+}

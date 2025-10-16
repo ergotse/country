@@ -1,0 +1,14 @@
+{
+  "intervals": [
+    {
+      "end": 1910,
+      "belongsTo": "GB"
+    },
+    {}
+  ],
+  "flagChange": [
+    1928,
+    1982,
+    1994
+  ]
+}

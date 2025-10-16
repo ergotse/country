@@ -1,1 +1,7 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="600" viewBox="0 0 600 300"><path fill="#6Cf" d="M0 0h600v300H0z"/><path fill="#FFF" d="M200 274l100-14 100 14L300 27z"/><path d="M213.5 274l86.5-14 86.5 14L300 60z"/><path fill="#FCD116" d="M200 274h200L300 150z"/></svg>
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="600" viewBox="0 0 12 6">
+	<title>Flag of Saint Lucia</title>
+	<path fill="#6cF" d="m0 0h12v6H0z"/>
+	<path fill="#fff" d="m6 .5279 2 4.9442L6 5l-2 .4721z"/>
+	<path d="m6 1.1946L7.5394 5H4.4606z"/>
+	<path fill="#fcd116" d="m6 3 2 2.4721H4z"/>
+</svg>

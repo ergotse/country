@@ -1,0 +1,20 @@
+{
+  "intervals": [
+    {
+      "end": 1948,
+      "belongsTo": "GB"
+    },
+    {}
+  ],
+  "prevCodes": [
+    {
+      "iso": "BU",
+      "start": 1948,
+      "end": 1989
+    }
+  ],
+  "flagChange": [
+    1974,
+    2010
+  ]
+}

@@ -1,0 +1,15 @@
+{
+  "intervals": [
+    {
+      "end": 1938
+    },
+    {
+      "end": 1945,
+      "partOf": "DE"
+    },
+    {}
+  ],
+  "flagChange": [
+    1920
+  ]
+}

@@ -1,0 +1,13 @@
+{
+  "intervals": [
+    {
+      "end": 1929,
+      "belongsTo": "IT"
+    },
+    {}
+  ],
+  "flagChange": [
+    2001,
+    2023
+  ]
+}

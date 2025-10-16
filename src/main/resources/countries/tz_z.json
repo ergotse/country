@@ -1,0 +1,14 @@
+{
+  "intervals": [
+    {
+      "end": 1963,
+      "belongsTo": "GB"
+    },
+    {
+      "end": 1964
+    },
+    {
+      "partOf": "TZ"
+    }
+  ]
+}

@@ -1,0 +1,13 @@
+{
+  "intervals": [
+    {
+      "end": 1914,
+      "belongsTo": "DE"
+    },
+    {
+      "end": 1962,
+      "belongsTo": "NZ"
+    },
+    {}
+  ]
+}

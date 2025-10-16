@@ -1,0 +1,16 @@
+{
+  "intervals": [
+    {
+      "end": 1918,
+      "partOf": "AT"
+    },
+    {
+      "end": 1992,
+      "partOf": "YU"
+    },
+    {}
+  ],
+  "flagChange": [
+    1998
+  ]
+}

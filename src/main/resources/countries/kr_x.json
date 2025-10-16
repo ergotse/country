@@ -1,0 +1,11 @@
+{
+  "intervals": [
+    {
+      "end": 1910
+    },
+    {
+      "end": 1945,
+      "belongsTo": "JP"
+    }
+  ]
+}
