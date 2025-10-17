@@ -8,14 +8,13 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-//@Value
 public class CountryData {
 
-    List<CountryInterval> intervals;
+    private final List<CountryInterval> intervals;
 
-    List<PrevCode> prevCodes;
+    private final List<PrevCode> prevCodes;
 
-    List<Year> flagChange;
+    private final List<Year> flagChange;
 
     @JsonCreator
     public CountryData(@JsonProperty("intervals") List<CountryInterval> intervals,

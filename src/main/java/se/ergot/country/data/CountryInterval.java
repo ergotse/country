@@ -11,18 +11,18 @@ import java.util.stream.Stream;
 
 public class CountryInterval implements Comparable<CountryInterval> {
 
-    Year start;
+    private final Year end;
+
+    private final String partOf;
+
+    private final String belongsTo;
+
+    private final String subdivisionOf;
+
+    private Year start;
 
     @JsonIgnore
-    Boolean openStart;
-
-    Year end;
-
-    String partOf;
-
-    String belongsTo;
-
-    String subdivisionOf;
+    private Boolean openStart;
 
     @JsonCreator
     public CountryInterval(

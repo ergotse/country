@@ -7,11 +7,11 @@ import java.time.Year;
 
 public class PrevCode {
 
-    String iso;
+    private final String iso;
 
-    Year start;
+    private final Year start;
 
-    Year end;
+    private final Year end;
 
     @JsonCreator
     public PrevCode(@JsonProperty("iso") String iso,

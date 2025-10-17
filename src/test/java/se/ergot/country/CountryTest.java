@@ -2,6 +2,7 @@ package se.ergot.country;
 
 import org.junit.jupiter.api.Test;
 import se.ergot.country.data.CountryFlag;
+import se.ergot.country.data.CountryInterval;
 
 import java.time.Year;
 import java.util.*;
@@ -204,5 +205,22 @@ class CountryTest {
         assertNotNull(Country.SE.getFlagSvg());
         assertNotNull(Country.SE.getFlagSvg(Year.of(1997)));
         assertNotNull(Country.AF.getFlagSvg(Year.of(2018)));
+    }
+
+    @Test
+    void testPartOfBelongsToSubdivisionOfExists() {
+        for (Country country : Country.values()) {
+            for (CountryInterval interval : country.getIntervals()) {
+                if (interval.getPartOf() != null) {
+                    assertNotNull(Country.find(interval.getPartOf()), "Country " + country.getIso() + " is part of " + interval.getPartOf() + " (not found)");
+                }
+                if (interval.getBelongsTo() != null) {
+                    assertNotNull(Country.find(interval.getBelongsTo()), "Country " + country.getIso() + " is belongs to " + interval.getBelongsTo() + " (not found)");
+                }
+                if (interval.getSubdivisionOf() != null) {
+                    assertNotNull(Country.find(interval.getSubdivisionOf()), "Country " + country.getIso() + " is subdivision of " + interval.getSubdivisionOf() + " (not found)");
+                }
+            }
+        }
     }
 }
