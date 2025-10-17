@@ -8,9 +8,12 @@ public class CountryFlag {
 
     private final String fileName;
 
-    public CountryFlag(Year endYear, String fileName) {
+    private final String svgContent;
+
+    public CountryFlag(Year endYear, String fileName, String svgContent) {
         this.endYear = endYear;
         this.fileName = fileName;
+        this.svgContent = svgContent;
     }
 
     public Year getEndYear() {
@@ -19,6 +22,10 @@ public class CountryFlag {
 
     public String getFileName() {
         return fileName;
+    }
+
+    public String getSvgContent() {
+        return svgContent;
     }
 
     @Override
