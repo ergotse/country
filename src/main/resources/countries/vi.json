@@ -1,0 +1,14 @@
+{
+  "intervals": [
+    {
+      "end": 1917,
+      "belongsTo": "DK"
+    },
+    {
+      "belongsTo": "US"
+    }
+  ],
+  "flagChange": [
+    1917
+  ]
+}

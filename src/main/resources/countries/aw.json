@@ -1,0 +1,11 @@
+{
+  "intervals": [
+    {
+      "end": 1986,
+      "partOf": "AN"
+    },
+    {
+      "belongsTo": "NL"
+    }
+  ]
+}

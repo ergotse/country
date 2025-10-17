@@ -1,0 +1,19 @@
+{
+  "intervals": [
+    {
+      "end": 1911,
+      "belongsTo": "OE_X"
+    },
+    {
+      "end": 1951,
+      "belongsTo": "IT"
+    },
+    {}
+  ],
+  "flagChange": [
+    1969,
+    1972,
+    1977,
+    2011
+  ]
+}

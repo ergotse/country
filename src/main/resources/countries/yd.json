@@ -1,0 +1,14 @@
+{
+  "intervals": [
+    {
+      "end": 1967,
+      "belongsTo": "GB"
+    },
+    {
+      "end": 1990
+    },
+    {
+      "partOf": "YE"
+    }
+  ]
+}

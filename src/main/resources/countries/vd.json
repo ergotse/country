@@ -1,0 +1,18 @@
+{
+  "intervals": [
+    {
+      "start": 1949,
+      "end": 1954,
+      "partOf": "VN"
+    },
+    {
+      "end": 1976
+    },
+    {
+      "partOf": "VN"
+    }
+  ],
+  "flagChange": [
+    1955
+  ]
+}

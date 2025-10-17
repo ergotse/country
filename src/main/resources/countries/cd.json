@@ -1,0 +1,24 @@
+{
+  "intervals": [
+    {
+      "end": 1960,
+      "belongsTo": "BE"
+    },
+    {}
+  ],
+  "prevCodes": [
+    {
+      "iso": "ZR",
+      "start": 1965,
+      "end": 1997
+    }
+  ],
+  "flagChange": [
+    1963,
+    1966,
+    1971,
+    1997,
+    2003,
+    2006
+  ]
+}

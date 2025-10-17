@@ -1,0 +1,17 @@
+{
+  "intervals": [
+    {
+      "end": 1916,
+      "belongsTo": "DE"
+    },
+    {
+      "end": 1960,
+      "belongsTo": "FR"
+    },
+    {}
+  ],
+  "flagChange": [
+    1961,
+    1975
+  ]
+}

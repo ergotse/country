@@ -1,0 +1,20 @@
+{
+  "intervals": [
+    {
+      "end": 1960,
+      "belongsTo": "FR"
+    },
+    {}
+  ],
+  "prevCodes": [
+    {
+      "iso": "DY",
+      "start": 1960,
+      "end": 1977
+    }
+  ],
+  "flagChange": [
+    1975,
+    1990
+  ]
+}

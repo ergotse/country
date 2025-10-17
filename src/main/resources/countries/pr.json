@@ -1,0 +1,11 @@
+{
+  "intervals": [
+    {
+      "belongsTo": "US"
+    }
+  ],
+  "flagChange": [
+    1952,
+    1995
+  ]
+}

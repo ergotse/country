@@ -1,0 +1,14 @@
+{
+  "intervals": [
+    {
+      "end": 1999,
+      "belongsTo": "PT"
+    },
+    {
+      "belongsTo": "CN"
+    }
+  ],
+  "flagChange": [
+    1999
+  ]
+}

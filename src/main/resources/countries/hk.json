@@ -1,0 +1,14 @@
+{
+  "intervals": [
+    {
+      "end": 1997,
+      "belongsTo": "GB"
+    },
+    {
+      "belongsTo": "CN"
+    }
+  ],
+  "flagChange": [
+    1997
+  ]
+}
