@@ -440,10 +440,14 @@ public enum Country {
     public List<CountryFlag> getAllFlags() {
         if (flags.isEmpty()) {
             flags.addAll(countryData.getFlagChange().stream()
-                    .map(year -> new CountryFlag(year, iso.toLowerCase() + "_" + year + ".svg"))
+                    .map(year -> {
+                        final String fileName = iso.toLowerCase() + "_" + year + ".svg";
+                        return new CountryFlag(year, fileName, getFlagSvgContent(fileName));
+                    })
                     .sorted(Comparator.comparing(CountryFlag::getEndYear))
                     .collect(Collectors.toList()));
-            flags.add(new CountryFlag(null, iso.toLowerCase() + ".svg"));
+            final String currentFileName = iso.toLowerCase() + ".svg";
+            flags.add(new CountryFlag(null, currentFileName, getFlagSvgContent(currentFileName)));
         }
         return flags;
     }
