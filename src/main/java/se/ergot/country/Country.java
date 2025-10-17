@@ -519,7 +519,8 @@ public enum Country {
     }
 
     public boolean existsAtYear(Year atYear) {
-        return getCurrentInterval(atYear) != null;
+        final CountryInterval currentInterval = getCurrentInterval(atYear);
+        return currentInterval != null && currentInterval.getPartOf() == null;
     }
 
     private CountryInterval getCurrentInterval(Year atYear) {
