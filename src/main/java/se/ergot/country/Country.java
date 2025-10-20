@@ -325,16 +325,15 @@ public enum Country {
     }
 
     public static Country find(String iso) {
-        if (iso == null) {
-            throw new IllegalArgumentException("iso must not be null");
-        }
-        for (Country country : values()) {
-            if (country.getIso().equalsIgnoreCase(iso) ||
-                    country.getPrevCodes().stream()
-                            .map(pc -> pc.getIso().toLowerCase())
-                            .collect(Collectors.toSet())
-                            .contains(iso.toLowerCase())) {
-                return country;
+        if (iso != null) {
+            for (Country country : values()) {
+                if (country.getIso().equalsIgnoreCase(iso) ||
+                        country.getPrevCodes().stream()
+                                .map(pc -> pc.getIso().toLowerCase())
+                                .collect(Collectors.toSet())
+                                .contains(iso.toLowerCase())) {
+                    return country;
+                }
             }
         }
         return null;

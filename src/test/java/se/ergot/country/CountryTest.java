@@ -23,7 +23,7 @@ class CountryTest {
         assertEquals(Country.CS, Country.find("CS"));
         assertEquals(Country.CS, Country.find("YU"));
         assertNull(Country.find("XX"));
-        assertThrows(IllegalArgumentException.class, () -> Country.find(null));
+        assertNull(Country.find(null));
     }
 
     @Test
