@@ -41,7 +41,7 @@ Add the following to your `pom.xml`:
 <dependency>
     <groupId>se.ergot</groupId>
     <artifactId>country</artifactId>
-    <version>2.0.0</version>
+    <version>2.0.1</version>
 </dependency>
 ```
 
