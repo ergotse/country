@@ -41,7 +41,7 @@ Add the following to your `pom.xml`:
 <dependency>
     <groupId>se.ergot</groupId>
     <artifactId>country</artifactId>
-    <version>2.0.1</version>
+    <version>2.0.2</version>
 </dependency>
 ```
 
@@ -105,6 +105,13 @@ boolean independent1997 = Country.EE.independentAtYear(Year.of(1997));
 boolean partOfRU1907 = Country.EE.partOfAtYear(Country.RU, Year.of(1907));
 boolean belongsToGB1977 = Country.DM.belongsToAtYear(Country.GB, Year.of(1977));
 
+// Get all administering countries at a year (supports condominiums with multiple countries)
+List<Country> rulers = Country.VU.getBelongsToAtYear(Year.of(1970)); // [GB, FR]
+
+// Get the nature of the dependency relationship
+BelongsToVariant variant = Country.NO.getBelongsToVariantAtYear(Year.of(1900)); // PERSONAL_UNION
+BelongsToVariant variant = Country.DM.getBelongsToVariantAtYear(Year.of(1977)); // COLONY
+
 // Get country by its iso code
 Country congo = Country.find("CD");
 String congoName = congo.getName(Locale.ENGLISH);
@@ -130,7 +137,27 @@ Some codes clash or are not standard ISO 3166-1:
 | Zanzibar              | TZ_Z | No ISO 3166-1 code                           |
 | Korean Empire (-1910) | KR_X | No ISO 3166-1 code                           |
 
+## Dependency Relationships (`belongsTo`)
+
+The `belongsTo` field on a country interval describes that the country was under the authority of one or more other countries during that period. It is a list of ISO codes to support cases where multiple powers jointly administered a territory (condominiums).
+
+The optional `variant` field classifies the nature of the relationship:
+
+| Variant | JSON value | Description | Example |
+|---|---|---|---|
+| `COLONY` | `colony` | Direct colonial administration | Lesotho → GB |
+| `PROTECTORATE` | `protectorate` | External power controls foreign affairs/defence; local governance continues | Kuwait → GB |
+| `MANDATE` | `mandate` | League of Nations mandate or UN Trust Territory | Iraq → GB |
+| `PERSONAL_UNION` | `personalUnion` | Sovereign states sharing a monarch, each with their own government | Norway → SE |
+| `CONDOMINIUM` | `condominium` | Joint administration by two or more powers | Vanuatu → GB + FR |
+| `ASSOCIATED_STATE` | `associatedState` | Self-governing state in free association | Cook Islands → NZ |
+| `OCCUPIED_TERRITORY` | `occupiedTerritory` | De facto administration without recognised sovereignty | Western Sahara → MA |
+
+A `null` variant means no classification has been assigned (e.g. territories with a unique legal status).
+
+---
+
 ## License
 
-Licensed under the [GNU General Public License v3.0 (GPL-3.0)](https://www.gnu.org/licenses/gpl-3.0.html).  
+Licensed under the [Apache License, Version 2.0](https://www.apache.org/licenses/LICENSE-2.0).  
 
