@@ -1,6 +1,7 @@
 package se.ergot.country;
 
 import org.junit.jupiter.api.Test;
+import se.ergot.country.data.BelongsToVariant;
 import se.ergot.country.data.CountryFlag;
 import se.ergot.country.data.CountryInterval;
 
@@ -64,6 +65,60 @@ class CountryTest {
         assertFalse(Country.DM.belongsToAtYear(Country.GB, Year.of(1978)));
         assertEquals(Collections.singletonList(Country.GB), Country.DM.getBelongsToAtYear(Year.of(1977)));
         assertEquals(Collections.emptyList(), Country.DM.getBelongsToAtYear(Year.of(1978)));
+    }
+
+    @Test
+    void testBelongsToAtYear_condominium() {
+        // Vanuatu (VU) was a condominium jointly administered by GB and FR until 1980
+        assertTrue(Country.VU.belongsToAtYear(Country.GB, Year.of(1975)));
+        assertTrue(Country.VU.belongsToAtYear(Country.FR, Year.of(1975)));
+        assertFalse(Country.VU.belongsToAtYear(Country.GB, Year.of(1981)));
+        final List<Country> rulers = Country.VU.getBelongsToAtYear(Year.of(1975));
+        assertEquals(2, rulers.size());
+        assertTrue(rulers.contains(Country.GB));
+        assertTrue(rulers.contains(Country.FR));
+    }
+
+    @Test
+    void testGetBelongsToVariantAtYear() {
+        assertEquals(BelongsToVariant.PERSONAL_UNION, Country.NO.getBelongsToVariantAtYear(Year.of(1900)));
+        assertEquals(BelongsToVariant.CONDOMINIUM, Country.VU.getBelongsToVariantAtYear(Year.of(1975)));
+        assertEquals(BelongsToVariant.ASSOCIATED_STATE, Country.CK.getBelongsToVariantAtYear(Year.now()));
+        assertEquals(BelongsToVariant.COLONY, Country.DM.getBelongsToVariantAtYear(Year.of(1977)));
+        assertNull(Country.SE.getBelongsToVariantAtYear(Year.now()));  // independent
+        assertNull(Country.NO.getBelongsToVariantAtYear(Year.now()));  // independent after 1905
+        assertNull(Country.AX.getBelongsToVariantAtYear(Year.now()));  // belongsTo but no variant assigned
+    }
+
+    @Test
+    void testExistsAtYear_belongsTo_returnsTrue() {
+        // belongsTo countries still "exist" as territories; only partOf countries are considered non-existent
+        assertTrue(Country.DM.existsAtYear(Year.of(1977)));
+        assertFalse(Country.EE.existsAtYear(Year.of(1967))); // partOf SU
+    }
+
+    @Test
+    void testIndependentAtYear_subdivisionOf_returnsFalse() {
+        assertFalse(Country.GB_ENG.independentAtYear(Year.of(1977)));
+        assertFalse(Country.GB_ENG.independentAtYear(Year.now()));
+    }
+
+    @Test
+    void testCountryInterval_validationRejectsConflictingTypes() {
+        assertThrows(IllegalArgumentException.class, () ->
+                new CountryInterval(null, null, null, "RU", Arrays.asList("GB"), null, null));
+        assertThrows(IllegalArgumentException.class, () ->
+                new CountryInterval(null, null, null, null, Arrays.asList("GB"), null, "GB"));
+        assertThrows(IllegalArgumentException.class, () ->
+                new CountryInterval(null, null, null, "RU", null, null, "GB"));
+    }
+
+    @Test
+    void testCountryInterval_validationRejectsVariantWithoutBelongsTo() {
+        assertThrows(IllegalArgumentException.class, () ->
+                new CountryInterval(null, null, null, null, null, BelongsToVariant.COLONY, null));
+        assertThrows(IllegalArgumentException.class, () ->
+                new CountryInterval(null, null, null, "RU", null, BelongsToVariant.COLONY, null));
     }
 
     @Test
