@@ -2,7 +2,8 @@
   "intervals": [
     {
       "end": 1970,
-      "belongsTo": "GB"
+      "belongsTo": "GB",
+      "variant": "protectorate"
     },
     {}
   ]

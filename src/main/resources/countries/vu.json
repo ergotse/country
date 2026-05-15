@@ -2,7 +2,11 @@
   "intervals": [
     {
       "end": 1980,
-      "belongsTo": "GB"
+      "belongsTo": [
+        "GB",
+        "FR"
+      ],
+      "variant": "condominium"
     },
     {}
   ]

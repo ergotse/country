@@ -2,7 +2,8 @@
   "intervals": [
     {
       "end": 1918,
-      "belongsTo": "DK"
+      "belongsTo": "DK",
+      "variant": "colony"
     },
     {}
   ]

@@ -1,7 +1,8 @@
 {
   "intervals": [
     {
-      "belongsTo": "GB"
+      "belongsTo": "GB",
+      "variant": "colony"
     }
   ],
   "flagChange": [

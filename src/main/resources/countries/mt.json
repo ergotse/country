@@ -2,7 +2,8 @@
   "intervals": [
     {
       "end": 1964,
-      "belongsTo": "GB"
+      "belongsTo": "GB",
+      "variant": "colony"
     },
     {}
   ]

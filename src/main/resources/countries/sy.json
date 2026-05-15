@@ -6,7 +6,8 @@
     },
     {
       "end": 1930,
-      "belongsTo": "FR"
+      "belongsTo": "FR",
+      "variant": "mandate"
     },
     {
       "end": 1958

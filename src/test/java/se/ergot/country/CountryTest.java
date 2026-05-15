@@ -62,6 +62,8 @@ class CountryTest {
     void testBelongsToAtYear() {
         assertTrue(Country.DM.belongsToAtYear(Country.GB, Year.of(1977)));
         assertFalse(Country.DM.belongsToAtYear(Country.GB, Year.of(1978)));
+        assertEquals(Collections.singletonList(Country.GB), Country.DM.getBelongsToAtYear(Year.of(1977)));
+        assertEquals(Collections.emptyList(), Country.DM.getBelongsToAtYear(Year.of(1978)));
     }
 
     @Test
@@ -215,7 +217,9 @@ class CountryTest {
                     assertNotNull(Country.find(interval.getPartOf()), "Country " + country.getIso() + " is part of " + interval.getPartOf() + " (not found)");
                 }
                 if (interval.getBelongsTo() != null) {
-                    assertNotNull(Country.find(interval.getBelongsTo()), "Country " + country.getIso() + " is belongs to " + interval.getBelongsTo() + " (not found)");
+                    for (String code : interval.getBelongsTo()) {
+                        assertNotNull(Country.find(code), "Country " + country.getIso() + " belongsTo " + code + " (not found)");
+                    }
                 }
                 if (interval.getSubdivisionOf() != null) {
                     assertNotNull(Country.find(interval.getSubdivisionOf()), "Country " + country.getIso() + " is subdivision of " + interval.getSubdivisionOf() + " (not found)");

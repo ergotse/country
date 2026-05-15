@@ -32,7 +32,7 @@ public class CountryData {
 
     private static List<CountryInterval> validateAndCreateIntervals(List<CountryInterval> intervals) {
         if (intervals == null || intervals.isEmpty()) {
-            return Collections.singletonList(new CountryInterval(Year.of(1900), true, null, null, null, null));
+            return Collections.singletonList(new CountryInterval(Year.of(1900), true, null, null, null, null, null));
         }
         ensureIntervalStart(intervals);
         validateIntervals(intervals);

@@ -6,7 +6,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.time.Year;
 import java.util.Comparator;
-import java.util.Objects;
+import java.util.List;
 import java.util.stream.Stream;
 
 public class CountryInterval implements Comparable<CountryInterval> {
@@ -15,7 +15,9 @@ public class CountryInterval implements Comparable<CountryInterval> {
 
     private final String partOf;
 
-    private final String belongsTo;
+    private final List<String> belongsTo;
+
+    private final BelongsToVariant variant;
 
     private final String subdivisionOf;
 
@@ -30,27 +32,33 @@ public class CountryInterval implements Comparable<CountryInterval> {
             @JsonProperty("openStart") Boolean openStart,
             @JsonProperty("end") Year end,
             @JsonProperty("partOf") String partOf,
-            @JsonProperty("belongsTo") String belongsTo,
+            @JsonProperty("belongsTo") List<String> belongsTo,
+            @JsonProperty("variant") BelongsToVariant variant,
             @JsonProperty("subdivisionOf") String subdivisionOf) {
-        validateType(partOf, belongsTo, subdivisionOf);
+        validateType(partOf, belongsTo, subdivisionOf, variant);
         this.start = start;
         this.openStart = openStart;
         this.end = end;
         this.partOf = partOf;
         this.belongsTo = belongsTo;
+        this.variant = variant;
         this.subdivisionOf = subdivisionOf;
     }
 
     public CountryInterval() {
-        this(null, null, null, null, null, null);
+        this(null, null, null, null, null, null, null);
     }
 
-    private void validateType(String partOf, String belongsTo, String subdivisionOf) {
-        final boolean valid = Stream.of(partOf, belongsTo, subdivisionOf)
-                .filter(Objects::nonNull)
+    private void validateType(String partOf, List<String> belongsTo, String subdivisionOf, BelongsToVariant variant) {
+        final boolean belongsToSet = belongsTo != null && !belongsTo.isEmpty();
+        final boolean valid = Stream.of(partOf != null, belongsToSet, subdivisionOf != null)
+                .filter(b -> b)
                 .count() <= 1;
         if (!valid) {
             throw new IllegalArgumentException("Only one of partOf, belongsTo or subdivisionOf can be set");
+        }
+        if (variant != null && !belongsToSet) {
+            throw new IllegalArgumentException("variant can only be set when belongsTo is set");
         }
     }
 
@@ -78,8 +86,12 @@ public class CountryInterval implements Comparable<CountryInterval> {
         return partOf;
     }
 
-    public String getBelongsTo() {
+    public List<String> getBelongsTo() {
         return belongsTo;
+    }
+
+    public BelongsToVariant getVariant() {
+        return variant;
     }
 
     public String getSubdivisionOf() {
@@ -100,8 +112,12 @@ public class CountryInterval implements Comparable<CountryInterval> {
         sb.append((start != null && !Boolean.TRUE.equals(openStart)) ? start : "...").append("-").append(end != null ? end : "");
         if (partOf != null) {
             sb.append(" (partOf: ").append(partOf).append(")");
-        } else if (belongsTo != null) {
-            sb.append(" (belongsTo: ").append(belongsTo).append(")");
+        } else if (belongsTo != null && !belongsTo.isEmpty()) {
+            sb.append(" (belongsTo: ").append(belongsTo);
+            if (variant != null) {
+                sb.append(", variant: ").append(variant);
+            }
+            sb.append(")");
         } else if (subdivisionOf != null) {
             sb.append(" (subdivisionOf: ").append(subdivisionOf).append(")");
         } else {

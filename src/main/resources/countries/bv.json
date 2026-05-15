@@ -1,7 +1,8 @@
 {
   "intervals": [
     {
-      "belongsTo": "NO"
+      "belongsTo": "NO",
+      "variant": "colony"
     }
   ]
 }

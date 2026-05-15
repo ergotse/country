@@ -1,7 +1,8 @@
 {
   "intervals": [
     {
-      "belongsTo": "MA"
+      "belongsTo": "MA",
+      "variant": "occupiedTerritory"
     }
   ]
 }

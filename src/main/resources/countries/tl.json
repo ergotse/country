@@ -2,11 +2,13 @@
   "intervals": [
     {
       "end": 1975,
-      "belongsTo": "PT"
+      "belongsTo": "PT",
+      "variant": "colony"
     },
     {
       "end": 2002,
-      "belongsTo": "ID"
+      "belongsTo": "ID",
+      "variant": "occupiedTerritory"
     },
     {}
   ]

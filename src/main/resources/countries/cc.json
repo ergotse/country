@@ -1,7 +1,8 @@
 {
   "intervals": [
     {
-      "belongsTo": "AU"
+      "belongsTo": "AU",
+      "variant": "colony"
     }
   ]
 }

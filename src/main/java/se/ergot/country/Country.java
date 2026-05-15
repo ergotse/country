@@ -1,5 +1,6 @@
 package se.ergot.country;
 
+import se.ergot.country.data.BelongsToVariant;
 import se.ergot.country.data.CountryData;
 import se.ergot.country.data.CountryFlag;
 import se.ergot.country.data.CountryInterval;
@@ -489,7 +490,7 @@ public enum Country {
             return false;
         }
         return currentInterval.getPartOf() == null &&
-                currentInterval.getBelongsTo() == null &&
+                (currentInterval.getBelongsTo() == null || currentInterval.getBelongsTo().isEmpty()) &&
                 currentInterval.getSubdivisionOf() == null;
     }
 
@@ -502,11 +503,26 @@ public enum Country {
     }
 
     public boolean belongsToAtYear(Country country, Year atYear) {
+        final List<Country> list = getBelongsToAtYear(atYear);
+        return list.contains(country);
+    }
+
+    public BelongsToVariant getBelongsToVariantAtYear(Year atYear) {
         final CountryInterval currentInterval = getCurrentInterval(atYear);
         if (currentInterval == null) {
-            return false;
+            return null;
         }
-        return currentInterval.getBelongsTo() != null && Country.valueOf(currentInterval.getBelongsTo()) == country;
+        return currentInterval.getVariant();
+    }
+
+    public List<Country> getBelongsToAtYear(Year atYear) {
+        final CountryInterval currentInterval = getCurrentInterval(atYear);
+        if (currentInterval == null || currentInterval.getBelongsTo() == null) {
+            return Collections.emptyList();
+        }
+        return currentInterval.getBelongsTo().stream()
+                .map(Country::valueOf)
+                .collect(Collectors.toList());
     }
 
     public boolean subdivisionOfAtYear(Country country, Year atYear) {

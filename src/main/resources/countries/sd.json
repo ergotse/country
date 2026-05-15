@@ -2,7 +2,8 @@
   "intervals": [
     {
       "end": 1956,
-      "belongsTo": "GB"
+      "belongsTo": ["GB", "EG"],
+      "variant": "condominium"
     },
     {}
   ],

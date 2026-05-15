@@ -5,7 +5,8 @@
     },
     {
       "end": 1945,
-      "belongsTo": "JP"
+      "belongsTo": "JP",
+      "variant": "colony"
     }
   ]
 }

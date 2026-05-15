@@ -2,7 +2,8 @@
   "intervals": [
     {
       "end": 1905,
-      "belongsTo": "SE"
+      "belongsTo": "SE",
+      "variant": "personalUnion"
     },
     {}
   ]

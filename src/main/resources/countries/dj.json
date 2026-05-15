@@ -2,7 +2,8 @@
   "intervals": [
     {
       "end": 1977,
-      "belongsTo": "FR"
+      "belongsTo": "FR",
+      "variant": "colony"
     },
     {}
   ]

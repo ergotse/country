@@ -2,10 +2,12 @@
   "intervals": [
     {
       "end": 1917,
-      "belongsTo": "DK"
+      "belongsTo": "DK",
+      "variant": "colony"
     },
     {
-      "belongsTo": "US"
+      "belongsTo": "US",
+      "variant": "colony"
     }
   ],
   "flagChange": [

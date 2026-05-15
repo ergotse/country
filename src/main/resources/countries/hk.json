@@ -2,7 +2,8 @@
   "intervals": [
     {
       "end": 1997,
-      "belongsTo": "GB"
+      "belongsTo": "GB",
+      "variant": "colony"
     },
     {
       "belongsTo": "CN"

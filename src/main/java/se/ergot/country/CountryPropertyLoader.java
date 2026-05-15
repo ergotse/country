@@ -1,5 +1,6 @@
 package se.ergot.country;
 
+import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import io.github.classgraph.ClassGraph;
@@ -23,6 +24,7 @@ public class CountryPropertyLoader {
 
     static {
         mapper.registerModule(new JavaTimeModule());
+        mapper.enable(DeserializationFeature.ACCEPT_SINGLE_VALUE_AS_ARRAY);
         loadAllResources("countries", false);
         loadAllResources("config/countries", true);
     }

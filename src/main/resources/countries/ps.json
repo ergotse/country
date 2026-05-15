@@ -2,7 +2,8 @@
   "intervals": [
     {
       "start": 1988,
-      "belongsTo": "IL"
+      "belongsTo": "IL",
+      "variant": "occupiedTerritory"
     }
   ]
 }

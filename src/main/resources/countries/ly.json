@@ -2,11 +2,13 @@
   "intervals": [
     {
       "end": 1911,
-      "belongsTo": "OE_X"
+      "belongsTo": "OE_X",
+      "variant": "protectorate"
     },
     {
       "end": 1951,
-      "belongsTo": "IT"
+      "belongsTo": "IT",
+      "variant": "colony"
     },
     {}
   ],

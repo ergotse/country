@@ -2,7 +2,8 @@
   "intervals": [
     {
       "end": 1990,
-      "belongsTo": "ZA"
+      "belongsTo": "ZA",
+      "variant": "mandate"
     },
     {}
   ]

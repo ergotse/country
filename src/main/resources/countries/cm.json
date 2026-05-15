@@ -2,11 +2,13 @@
   "intervals": [
     {
       "end": 1916,
-      "belongsTo": "DE"
+      "belongsTo": "DE",
+      "variant": "colony"
     },
     {
       "end": 1960,
-      "belongsTo": "FR"
+      "belongsTo": "FR",
+      "variant": "mandate"
     },
     {}
   ],

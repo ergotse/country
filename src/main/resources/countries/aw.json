@@ -5,7 +5,8 @@
       "partOf": "AN"
     },
     {
-      "belongsTo": "NL"
+      "belongsTo": "NL",
+      "variant": "colony"
     }
   ]
 }
