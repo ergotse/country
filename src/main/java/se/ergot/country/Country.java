@@ -1,10 +1,6 @@
 package se.ergot.country;
 
-import se.ergot.country.data.BelongsToVariant;
-import se.ergot.country.data.CountryData;
-import se.ergot.country.data.CountryFlag;
-import se.ergot.country.data.CountryInterval;
-import se.ergot.country.data.PrevCode;
+import se.ergot.country.data.*;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -341,7 +337,13 @@ public enum Country {
     }
 
     public static Country getNative() {
-        return Country.valueOf(CountryPropertyLoader.getProperties("").getProperty("country.native", Locale.getDefault().getCountry()));
+        return Country.valueOf(CountryPropertyLoader.getProperties("")
+                .getProperty("country.native", getCountryFromDefaultLocale()));
+    }
+
+    private static String getCountryFromDefaultLocale() {
+        final String country = Locale.getDefault().getCountry();
+        return !country.isEmpty() ? country : "SE";
     }
 
     public static Country findBy(String key, String value) {
@@ -530,7 +532,8 @@ public enum Country {
         if (currentInterval == null) {
             return false;
         }
-        return currentInterval.getSubdivisionOf() != null && Country.valueOf(currentInterval.getSubdivisionOf()) == country;
+        return currentInterval.getSubdivisionOf() != null && Country.valueOf(
+                currentInterval.getSubdivisionOf()) == country;
     }
 
     public boolean existsAtYear(Year atYear) {
