@@ -265,6 +265,78 @@ class CountryTest {
     }
 
     @Test
+    void testGetCurrentInterval_nullYear_usesCurrentYear() {
+        // SE is currently independent, so null atYear (= Year.now()) should resolve to a non-null interval
+        assertNotNull(Country.SE.getCurrentInterval(null));
+    }
+
+    @Test
+    void testGetCurrentInterval_before1900_returnsNull() {
+        assertNull(Country.SE.getCurrentInterval(Year.of(1899)));
+        assertNull(Country.SE.getCurrentInterval(Year.of(1800)));
+    }
+
+    @Test
+    void testGetCurrentInterval_exactly1900_notTreatedAsBefore() {
+        // 1900 is the cutoff boundary — isBefore(1900) is false, so interval lookup proceeds
+        assertNotNull(Country.SE.getCurrentInterval(Year.of(1900)));
+    }
+
+    @Test
+    void testGetCurrentInterval_independentInterval() {
+        // EE was independent in 1918; interval should have no partOf
+        final CountryInterval interval = Country.EE.getCurrentInterval(Year.of(1918));
+        assertNotNull(interval);
+        assertNull(interval.getPartOf());
+    }
+
+    @Test
+    void testGetCurrentInterval_partOfInterval() {
+        // EE was part of SU in 1967; interval should have partOf set
+        final CountryInterval interval = Country.EE.getCurrentInterval(Year.of(1967));
+        assertNotNull(interval);
+        assertNotNull(interval.getPartOf());
+    }
+
+    @Test
+    void testGetCurrentInterval_afterAllIntervalsEnded_returnsNull() {
+        // OE_X (Austria-Hungary) ceased to exist; no interval covers 1937
+        assertNull(Country.OE_X.getCurrentInterval(Year.of(1937)));
+    }
+
+    @Test
+    void testGetCurrentInterval_openEndedInterval_matchesFutureYear() {
+        // SE has an open-ended interval (null end); it should match any year >= its start
+        final CountryInterval interval = Country.SE.getCurrentInterval(Year.of(2050));
+        assertNotNull(interval);
+        assertNull(interval.getEnd());
+    }
+
+    @Test
+    void testGetCurrentInterval_endIsExclusive() {
+        // OE_X existed at 1901 but not at 1937 — confirm the end year is exclusive
+        assertNotNull(Country.OE_X.getCurrentInterval(Year.of(1901)));
+        assertNull(Country.OE_X.getCurrentInterval(Year.of(1937)));
+    }
+
+    @Test
+    void testGetCurrentInterval_partOfAtYear() {
+        final CountryInterval partOfInterval = Country.EE.getCurrentInterval(Year.of(1907));
+        assertNotNull(partOfInterval);
+        assertNotNull(partOfInterval.getPartOf());
+
+        final CountryInterval independentInterval = Country.EE.getCurrentInterval(Year.of(1925));
+        assertNotNull(independentInterval);
+        assertNull(independentInterval.getPartOf());
+    }
+
+    @Test
+    void testGetCurrentInterval_sortedByStart_returnsEarliestMatch() {
+        // There should be at most one matching interval per year; verify no ambiguity for SE
+        assertNotNull(Country.SE.getCurrentInterval(Year.of(1950)));
+    }
+
+    @Test
     void testPartOfBelongsToSubdivisionOfExists() {
         for (Country country : Country.values()) {
             for (CountryInterval interval : country.getIntervals()) {

@@ -538,7 +538,7 @@ public enum Country {
         return currentInterval != null && currentInterval.getPartOf() == null;
     }
 
-    private CountryInterval getCurrentInterval(Year atYear) {
+    public CountryInterval getCurrentInterval(Year atYear) {
         final Year year = atYear != null ? atYear : Year.now();
         if (year.isBefore(Year.of(1900))) {
             return null;

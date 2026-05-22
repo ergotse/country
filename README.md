@@ -122,6 +122,10 @@ Country yugoslavia = Country.find("YU");
 // Get previous names
 Map<Year, String> previousNames = Country.CD.getPreviousNames(Locale.ENGLISH);
 
+// Get the interval record active at a specific year (null if before 1900 or no interval exists)
+CountryInterval interval = Country.EE.getCurrentInterval(Year.of(1967)); // interval with partOf = "SU"
+CountryInterval current = Country.SE.getCurrentInterval(null);           // uses Year.now()
+
 // Get country properties
 String fifaCode = Country.SE.getValue("fifa");
 ```
@@ -154,6 +158,26 @@ The optional `variant` field classifies the nature of the relationship:
 | `OCCUPIED_TERRITORY` | `occupiedTerritory` | De facto administration without recognised sovereignty | Western Sahara → MA |
 
 A `null` variant means no classification has been assigned (e.g. territories with a unique legal status).
+
+---
+
+## CountryInterval
+
+A `CountryInterval` represents a time-bound record describing a country's status during a specific period. Each country has one or more intervals covering its existence from 1900 onward.
+
+| Field | Type | Description |
+|---|---|---|
+| `start` | `Year` | First year of the interval (inclusive). `null` if the interval predates 1900. |
+| `openStart` | `Boolean` | `true` if the interval started before 1900 and the exact start is unknown. |
+| `end` | `Year` | First year the interval no longer applies (exclusive). `null` means the interval is still current. |
+| `partOf` | `String` | ISO code of the country this was absorbed into (e.g. Estonia → `SU` during Soviet occupation). Mutually exclusive with `belongsTo` and `subdivisionOf`. |
+| `belongsTo` | `List<String>` | ISO codes of the administering country or countries. Used for dependencies, colonies, and condominiums. Mutually exclusive with `partOf` and `subdivisionOf`. |
+| `variant` | `BelongsToVariant` | Classifies the nature of the `belongsTo` relationship. Only set when `belongsTo` is present. |
+| `subdivisionOf` | `String` | ISO code of the parent country when the entity is a subdivision (e.g. England → `GB`). Mutually exclusive with `partOf` and `belongsTo`. |
+
+An interval with none of `partOf`, `belongsTo`, or `subdivisionOf` set represents an **independent** country during that period.
+
+The `end` year is **exclusive**: an interval ending in `1940` covers up to and including `1939`.
 
 ---
 
