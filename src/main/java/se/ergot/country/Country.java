@@ -166,7 +166,7 @@ public enum Country {
     PH,
     PK,
     PL,
-    PS, // Palestine not fully accepted yet, but is recognized by the majority of the worlds nations (157 last I checked)
+    PS, // Palestine not fully accepted yet, but is recognized by the majority of the worlds nations (157 at the end of 2025)
     PT,
     PW,
     PY,
@@ -224,7 +224,9 @@ public enum Country {
 
     // Countries with ISO 3166-1 alpha 2, but not independent
     AQ,
-    XK,
+
+    // Country with a temporary (user-assigned) code, but widely recognized.
+    XK, // Kosovo is recognized by the majority of the worlds nations (~110 at the end of 2025), but has no official ISO 3166-1 code
 
     // British Overseas Territories
     AI,

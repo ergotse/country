@@ -1,7 +1,9 @@
 {
   "intervals": [
     {
+      "end": 2008,
       "partOf": "RS"
-    }
+    },
+    {}
   ]
 }
