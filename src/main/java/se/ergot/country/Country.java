@@ -311,7 +311,9 @@ public enum Country {
 
     private final String iso = name();
 
-    private final List<CountryFlag> flags = new ArrayList<>();
+    // Loaded on first request. The enum instance is shared by all threads, so the list is built locally and published
+    // in one assignment; if two threads load it at the same time they build equal lists.
+    private volatile List<CountryFlag> flags;
 
     private final CountryData countryData;
 
@@ -442,18 +444,21 @@ public enum Country {
     }
 
     public List<CountryFlag> getAllFlags() {
-        if (flags.isEmpty()) {
-            flags.addAll(countryData.getFlagChange().stream()
+        List<CountryFlag> result = flags;
+        if (result == null) {
+            final List<CountryFlag> allFlags = countryData.getFlagChange().stream()
                     .map(year -> {
                         final String fileName = iso.toLowerCase() + "_" + year + ".svg";
                         return new CountryFlag(year, fileName, getFlagSvgContent(fileName));
                     })
                     .sorted(Comparator.comparing(CountryFlag::getEndYear))
-                    .collect(Collectors.toList()));
+                    .collect(Collectors.toCollection(ArrayList::new));
             final String currentFileName = iso.toLowerCase() + ".svg";
-            flags.add(new CountryFlag(null, currentFileName, getFlagSvgContent(currentFileName)));
+            allFlags.add(new CountryFlag(null, currentFileName, getFlagSvgContent(currentFileName)));
+            result = Collections.unmodifiableList(allFlags);
+            flags = result;
         }
-        return flags;
+        return result;
     }
 
     String getFlagFileName() {

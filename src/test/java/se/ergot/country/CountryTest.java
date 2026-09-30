@@ -5,8 +5,13 @@ import se.ergot.country.data.BelongsToVariant;
 import se.ergot.country.data.CountryFlag;
 import se.ergot.country.data.CountryInterval;
 
+import java.lang.reflect.Field;
 import java.time.Year;
 import java.util.*;
+import java.util.concurrent.CountDownLatch;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
 import java.util.stream.Collectors;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -205,6 +210,42 @@ class CountryTest {
                 .map(Year::getValue)
                 .collect(Collectors.toSet()));
         assertEquals(1, Country.DK.getAllFlags().size());
+    }
+
+    /**
+     * The flags of a country are loaded the first time they are requested. The enum instance is shared by all
+     * threads, so when several threads request the flags for the first time at the same moment, each flag must
+     * still occur only once.
+     */
+    @Test
+    void testGetAllFlags_concurrentFirstAccess_containsEachFlagOnce() throws Exception {
+        resetFlags(Country.DE);
+        final int threadCount = 16;
+        final ExecutorService executor = Executors.newFixedThreadPool(threadCount);
+        final CountDownLatch start = new CountDownLatch(1);
+        try {
+            final List<Future<List<CountryFlag>>> results = new ArrayList<>();
+            for (int i = 0; i < threadCount; i++) {
+                results.add(executor.submit(() -> {
+                    start.await();
+                    return Country.DE.getAllFlags();
+                }));
+            }
+            start.countDown();
+            for (Future<List<CountryFlag>> result : results) {
+                assertEquals(Arrays.asList(Year.of(1918), Year.of(1933), Year.of(1935), Year.of(1945), null),
+                        result.get().stream().map(CountryFlag::getEndYear).collect(Collectors.toList()));
+            }
+        } finally {
+            executor.shutdownNow();
+        }
+    }
+
+    // Sets the country's flags to not loaded, since other tests in the same JVM may already have loaded them
+    private static void resetFlags(Country country) throws ReflectiveOperationException {
+        final Field flagsField = Country.class.getDeclaredField("flags");
+        flagsField.setAccessible(true);
+        flagsField.set(country, null);
     }
 
     @Test
